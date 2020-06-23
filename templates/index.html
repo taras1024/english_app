@@ -1,5 +1,26 @@
 {% extends "layout.html" %}
 
 {% block main %}
-    <h1>English Speaking Club</h1>
+    <h1 class="mb-5">English Speaking Club</h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+            <form method="post">
+                <div class="form-group">
+                    <label>Choose a topic category</label>
+                    <select class="form-control mb-2" name="category">
+                        <option value="Random">Random</option>
+                        <option value="Education">Education</option>
+                        <option value="Health">Health</option>
+                        <option value="Science">Science</option>
+                    </select>
+                    <button class="btn btn-primary" type="submit">Generate</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9 pl-2">
+            <h2 class="text-center">{{topic}}</h2>
+        </div>
+    </div>
+
+
 {% endblock %}
