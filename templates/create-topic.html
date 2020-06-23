@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block main %}
+        <div class="container">
+            <h1 class="mb-5">Create a topic</h1>
+            <form method="post">
+                <input type="text" name="topic" id="topic" class="form-control" placeholder="Add topic"><br>
+                <input type="text" name="category" id="category" class="form-control" placeholder="Add category"><br>
+                <button class="btn btn-primary" type="submit">Create</button>
+            </form>
+        </div>
+
+{% endblock %}

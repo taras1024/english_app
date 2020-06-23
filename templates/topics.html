@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <h1>All topics</h1>
+    <div>
+        <table class="table">
+            <thead>
+                <th>Topic</th>
+                <th>Category</th>
+            </thead>
+            <tbody>
+                {% for topic in topics %}
+                    <tr>
+                        <td>{{topic.topic}}</td>
+                        <td>{{topic.category}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
