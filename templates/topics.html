@@ -1,12 +1,15 @@
 {% extends "layout.html" %}
 
+{% block title%}All topics{% endblock %}
+
 {% block main %}
     <h1>All topics</h1>
     <div>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <th>Topic</th>
                 <th>Category</th>
+                <th>A</th>
             </thead>
             <tbody>
                 {% for topic in topics %}
