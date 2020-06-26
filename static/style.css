@@ -35,3 +35,19 @@ label {
 .btn {
     display: inline-block;
 }
+
+.icons {
+    border-radius: 20px;
+}
+
+figcaption  {
+    text-align:center;
+}
+
+.flex-container {
+    display:flex;
+}
+.activity {
+    margin: 20px;
+    text-align:center
+}

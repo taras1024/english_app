@@ -9,14 +9,12 @@
             <thead>
                 <th>Topic</th>
                 <th>Category</th>
-                <th>A</th>
             </thead>
             <tbody>
                 {% for topic in topics %}
                     <tr>
                         <td>{{topic.topic}}</td>
                         <td>{{topic.category}}</td>
-                        <td><a class="btn btn-danger"></a></td>
                     </tr>
                 {% endfor %}
             </tbody>

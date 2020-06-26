@@ -30,18 +30,9 @@ class Situation(db.Model):
         return '<Situation %r>' % self.id
 
 
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    if request.method == "POST":
-        t_category = request.form['category']
-        if t_category != "Random":
-            data = Topic.query.filter_by(category=t_category).all()
-        else:
-            data = Topic.query.all()
-        return render_template("index.html", topic=data[randint(0, len(data)-1)].topic)
-    else:
-        return render_template("index.html")
+    return render_template("index.html")
 
 
 @app.route('/debate-topic', methods=['GET', 'POST'])
