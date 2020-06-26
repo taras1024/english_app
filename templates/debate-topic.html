@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}Debate Topic Generator{% endblock %}
+
+{% block main %}
+    <h1 class="mb-5">Debate Topic Generator</h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+            <form method="post">
+                <div class="form-group">
+                    <label>Choose a topic category</label>
+                    <select class="form-control mb-2" name="category">
+                        <option value="Random">Random</option>
+                        <option value="Education">Education</option>
+                        <option value="Health">Health</option>
+                        <option value="Science">Science</option>
+                    </select>
+                    <button class="btn btn-warning" type="submit" name="submit_button" value="Add">Add new topic</button>
+                    <button class="btn btn-primary" type="submit" name="submit_button" value="Show">Show all topics</button>
+                    <button class="btn btn-success" type="submit" name="submit_button" value="Generategit ">Generate</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 pl-2">
+            <h2 class="text-center">{{topic}}</h2>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}Role Play Game{% endblock %}
+
+{% block main %}
+    <h1 class="mb-5">Role Play Generator</h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+            <form method="post">
+                <input type="text" name="new-situation" class="form-control mb-2" placeholder="New situation">
+                <button type="submit" name="submit_button" value="Add" class="btn btn-warning">Add situation</button>
+                <button type="submit" name="submit_button" value="Show" class="btn btn-primary">Show all situations</button>
+                <button type="submit" name="submit_button" value="Generate" class="btn btn-success">Generate situation</button>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sm-12 col md-12 col-lg-6">
+            <h2 class="center">{{situation}}</h2>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped  mt-4" style="font-size: 20px">
+            <thead>
+                <th>Situation</th>
+                <th>A</th>
+            </thead>
+            <tbody>
+                {% for situation in situations %}
+                    <tr>
+                        <td>{{situation.situation}}</td>
+                        <td><a href="#" class="btn btn-danger"></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
