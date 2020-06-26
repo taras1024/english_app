@@ -38,6 +38,7 @@ label {
 
 .icons {
     border-radius: 20px;
+    margin-bottom: 15px;
 }
 
 figcaption  {
@@ -50,4 +51,11 @@ figcaption  {
 .activity {
     margin: 20px;
     text-align:center
+}
+
+.zolochiv {
+    color: #D91E16;
+    font-family: cursive;
+    font-style: italic
+    padding:40px;
 }
