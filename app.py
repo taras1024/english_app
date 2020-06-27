@@ -105,3 +105,10 @@ def role_play():
     else:
         return render_template('role-play.html')
 
+
+
+@app.route('/box-of-lies', methods=['GET'])
+def box_of_lies():
+    return render_template('box-of-lies.html')
+
+
