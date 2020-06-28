@@ -3,5 +3,22 @@
 {% block title %}Box of Lies{% endblock %}
 
 {% block main %}
-    <h1 class="mb-5">Box Of Lies</h1>
+    <h1 class="mb-2">Box Of Lies</h1>
+    <div>
+        <p class="description">
+            You have to do one of two things: describe the image truthfully, or pretend to describe that picture
+            while actually inventing a completely different description. Changing just minor elements of the
+            picture is not allowed. Either way, you have to fool the others into thinking you are doing the
+            opposite, i.e. lying when you are telling the truth, or telling the truth when you are lying.
+            When you have finished the description, the others guess whether you are telling the truth or lying.
+            If someone guesses correctly, he/she gets a point.
+        </p>
+            <form method="post">
+                <button class="btn btn-success mb-2" type="submit">Generate random picture</button>
+            </form>
+    </div>
+        <div class="col-xs-3 col-sm-3 col-md-12">
+            <img src="static/images/box-of-lies/{{image}}" >
+        </div>
+
 {% endblock %}

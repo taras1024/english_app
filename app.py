@@ -4,6 +4,7 @@
 from flask import Flask, render_template, request, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from random import randint
+import os
 
 app = Flask(__name__)
 
@@ -107,8 +108,13 @@ def role_play():
 
 
 
-@app.route('/box-of-lies', methods=['GET'])
+@app.route('/box-of-lies', methods=['GET','POST'])
 def box_of_lies():
-    return render_template('box-of-lies.html')
+    if request.method == "POST":
+        directory = 'static/images/box-of-lies'
+        files = os.listdir(directory)
+        return render_template('box-of-lies.html', image=files[randint(0, len(files)-1)])
+    else:
+        return render_template('box-of-lies.html')
 
 

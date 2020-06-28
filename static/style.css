@@ -61,3 +61,8 @@ figcaption  {
 main {
     text-align:center;
 }
+
+.description {
+    text-align: left;
+    font-size: 1.2em;
+}
