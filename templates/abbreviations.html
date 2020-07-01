@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}Abbreviations Generator{% endblock %}
+
+{% block main %}
+    <h1 class="mb-5">Abbreviations Generator</h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 ">
+            <form method="post">
+                <input type="text" name="new-abbreviation" class="form-control mb-2"  placeholder="New abbreviation">
+                <input type="text" name="abbreviation-meaning" class="form-control mb-2" placeholder="Abbreviation's meaning">
+                <button type="submit" name="subbmit_button" value="Add" class="btn btn-warning mb-2">Add abbreviation</button>
+                <button type="submit" name="subbmit_button" value="Show" class="btn btn-primary mb-2">Show all abbreviations</button>
+                <button tupe="submit" name="subbmit_button" value="Generate" class="btn btn-success mb-2">Generate abbreviation</button>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sn-12 col-md-12 col-lg-6">
+            <h2 class="center">{{abbreviation}}</h2>
+
+            <h2 class="center">{{meaning}}</h2>
+        </div>
+    </div>
+    <div>
+        <table class="table table-stripped mt-4" style="font-size: 20px;">
+            <thead>
+                <th>Abbreviation</th>
+                <th>Meaning</th>
+            </thead>
+            <tbody>
+                {% for abbreviation in abbreviations %}
+                    <tr>
+                        <td>{{abbreviation.abbreviation}}</td>
+                        <td>{{abbreviation.meaning}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+
+        </table>
+    </div>
+
+{% endblock %}

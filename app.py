@@ -31,6 +31,15 @@ class Situation(db.Model):
         return '<Situation %r>' % self.id
 
 
+class Abbreviation(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    abbreviation = db.Column(db.String(30), nullable=False)
+    meaning = db.Column(db.String(100), unique=True, nullable=False)
+
+    def __repr__(self):
+        return '<Abbreviation %r>' % self.id
+
+
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -117,4 +126,26 @@ def box_of_lies():
     else:
         return render_template('box-of-lies.html')
 
+
+@app.route('/abbreviations', methods=['GET', 'POST'])
+def abbreviations():
+    if request.method == "POST":
+        if request.form['subbmit_button'] == "Add":
+            new_abbreviation = request.form['new-abbreviation']
+            meaning = request.form['abbreviation-meaning']
+            abbreviation = Abbreviation(abbreviation=new_abbreviation, meaning=meaning)
+
+            try:
+                db.session.add(abbreviation)
+                db.session.commit()
+                return redirect('/')
+            except:
+                return "Error: Can not add new abbreviation! Maybe we already have your meaning in our list!!!"
+        elif request.form['subbmit_button'] == "Generate":
+            return render_template('abbreviations.html', abbreviation="lol")
+        elif request.form['subbmit_button'] == "Show":
+            data = Abbreviation.query.all()
+            return render_template('abbreviations.html', abbreviations=data)
+    else:
+        return render_template('abbreviations.html')
 

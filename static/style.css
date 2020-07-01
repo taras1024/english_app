@@ -28,6 +28,7 @@ h1 {
     font-weight: bold;
     color: #0074D9;
 }
+
 label {
     font-weight: bold;
 }
@@ -50,7 +51,6 @@ figcaption  {
 }
 
 
-
 .zolochiv {
     color: #D91E16;
     font-family: cursive;
@@ -58,9 +58,6 @@ figcaption  {
     padding:40px;
 }
 
-main {
-    text-align:center;
-}
 
 .description {
     text-align: left;
