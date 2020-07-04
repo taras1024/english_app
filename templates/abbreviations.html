@@ -3,7 +3,7 @@
 {% block title %}Abbreviations Generator{% endblock %}
 
 {% block main %}
-    <h1 class="mb-5">Abbreviation Generator</h1>
+    <h1 name="header" class="mb-5">Abbreviation Generator</h1>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 ">
             <form method="post">
@@ -11,13 +11,15 @@
                 <input type="text" name="abbreviation-meaning" class="form-control mb-2" placeholder="Abbreviation's meaning">
                 <button type="submit" name="subbmit_button" value="Add" class="btn btn-warning mb-2">Add abbreviation</button>
                 <button type="submit" name="subbmit_button" value="Show" class="btn btn-primary mb-2">Show all abbreviations</button>
-                <button tupe="submit" name="subbmit_button" value="Generate" class="btn btn-success mb-2">Generate abbreviation</button>
             </form>
         </div>
         <div class="col-xs-12 col-sn-12 col-md-12 col-lg-6">
-            <h2 class="center">{{abbreviation}}</h2>
-
-            <h2 class="center">{{meaning}}</h2>
+            <form method="post">
+                <input type="text" name="random_abb" class="form-control mb-2" value="{{random_abbreviation}}" placeholder="Generate or type abbreviation">
+                <button type="submit" name="subbmit_button" value="Generate" class="btn btn-success mb-2">Generate abbreviation</button>
+                <button type="submit" name="subbmit_button" value="Meaning" class="btn btn-primary mb-2">Show meaning</button>
+            </form>
+            <h4>Meaning: {{meaning}}</h4>
         </div>
     </div>
     <div>
@@ -27,15 +29,13 @@
                 <th>Meaning</th>
             </thead>
             <tbody>
-                {% for abbreviation in abbreviations %}
+                {% for abb in abbreviations %}
                     <tr>
-                        <td>{{abbreviation.abbreviation}}</td>
-                        <td>{{abbreviation.meaning}}</td>
+                        <td>{{abb.abbreviation}}</td>
+                        <td>{{abb.meaning}}</td>
                     </tr>
                 {% endfor %}
             </tbody>
-
-
         </table>
     </div>
 

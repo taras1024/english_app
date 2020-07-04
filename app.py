@@ -79,6 +79,7 @@ def create_topic():
         try:
             db.session.add(topics)
             db.session.commit()
+
             return redirect('/')
         except:
             return "Error: Can not add new topic! Maybe we already have your topic in our list!!!"
@@ -142,10 +143,14 @@ def abbreviations():
             except:
                 return "Error: Can not add new abbreviation! Maybe we already have your meaning in our list!!!"
         elif request.form['subbmit_button'] == "Generate":
-            return render_template('abbreviations.html', abbreviation="lol")
+            data = Abbreviation.query.all()
+            return render_template('abbreviations.html', random_abbreviation=data[randint(0, len(data)-1)].abbreviation)
+        elif request.form['subbmit_button'] == "Meaning":
+            abbr = request.form['random_abb']
+            abb = Abbreviation.query.filter_by(abbreviation=request.form['random_abb']).first()
+            return render_template('abbreviations.html', random_abbreviation=abb.abbreviation, meaning=abb.meaning)
         elif request.form['subbmit_button'] == "Show":
             data = Abbreviation.query.all()
             return render_template('abbreviations.html', abbreviations=data)
     else:
         return render_template('abbreviations.html')
-
