@@ -40,6 +40,15 @@ class Abbreviation(db.Model):
         return '<Abbreviation %r>' % self.id
 
 
+class Idiom(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    idiom = db.Column(db.String(100), unique=True, nullable=False)
+    meaning = db.Column(db.String(400), nullable=False)
+
+    def __repr__(self):
+        return '<Idiom %r>' %self.id
+
+
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -196,3 +205,32 @@ def abbreviation_delete(id):
         return redirect('/abbreviations-edit')
     except:
         return "Can not delete abbreviation"
+
+
+
+@app.route('/idioms', methods=['GET', 'POST'])
+def idioms():
+    if request.method == "POST":
+        if request.form['subbmit_button'] == "Add":
+            new_idiom = request.form['new-idiom']
+            meaning = request.form['idiom-meaning']
+            idiom = Idiom(idiom=new_idiom, meaning=meaning)
+
+            try:
+                db.session.add(idiom)
+                db.session.commit()
+                return redirect('/')
+            except:
+                return "Error: Can not add new idiom! Maybe we already have your idiom in our list or this is another error!!!"
+        elif request.form['subbmit_button'] == "Generate":
+            data = Idiom.query.all()
+            return render_template('idioms.html', random_idiom=data[randint(0, len(data)-1)].idiom)
+        elif request.form['subbmit_button'] == "Meaning":
+            random_idiom = request.form['random_idiom']
+            idiom = Idiom.query.filter_by(idiom=request.form['random_idiom']).first()
+            return render_template('idioms.html', random_idiom=idiom.idiom, meaning=idiom.meaning)
+        elif request.form['subbmit_button'] == "Show":
+            data = Idiom.query.all()
+            return render_template('idioms.html', idioms=data)
+    else:
+        return render_template('idioms.html')

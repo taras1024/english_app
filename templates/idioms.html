@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}Idiom Generator{% endblock %}
+
+{% block main %}
+    <h1 name="header" class="mb-5">Idiom Generator</h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 ">
+            <form method="post">
+                <input type="text" name="new-idiom" class="form-control mb-2"  placeholder="New Idiom">
+                <input type="text" name="idiom-meaning" class="form-control mb-2" placeholder="Idiom meaning">
+                <button type="submit" name="subbmit_button" value="Add" class="btn btn-warning mb-2">Add Idiom</button>
+                <button type="submit" name="subbmit_button" value="Show" class="btn btn-primary mb-2">Show All Idioms</button>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sn-12 col-md-12 col-lg-6">
+            <form method="post">
+                <input type="text" name="random_idiom" class="form-control mb-2" value="{{random_idiom}}" placeholder="Generate or type Idiom">
+                <button type="submit" name="subbmit_button" value="Generate" class="btn btn-success mb-2">Generate Idiom</button>
+                <button type="submit" name="subbmit_button" value="Meaning" class="btn btn-primary mb-2">Show meaning</button>
+            </form>
+            <h4><span class="meaning">Meaning:</span> {{meaning}}</h4>
+        </div>
+    </div>
+    <div>
+        <table class="table table-stripped mt-4" style="font-size: 20px;">
+            <thead>
+                <th>Idiom</th>
+                <th>Meaning</th>
+            </thead>
+            <tbody>
+                {% for i in idioms %}
+                    <tr>
+                        <td>{{i.idiom}}</td>
+                        <td>{{i.meaning}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
