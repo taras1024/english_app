@@ -121,7 +121,8 @@ def role_play():
 @app.route('/box-of-lies', methods=['GET','POST'])
 def box_of_lies():
     if request.method == "POST":
-        directory = 'static/images/box-of-lies'
+        directory = '/home/zlenglish/mysite/static/images/box-of-lies'
+        #directory = 'static/images/box-of-lies'
         files = os.listdir(directory)
         return render_template('box-of-lies.html', image=files[randint(0, len(files)-1)])
     else:
@@ -154,3 +155,44 @@ def abbreviations():
             return render_template('abbreviations.html', abbreviations=data)
     else:
         return render_template('abbreviations.html')
+
+
+@app.route('/abbreviations-edit', methods=['GET', 'POST'])
+def abbreviations_edit():
+    if request.method == "POST":
+        if request.form['subbmit_button'] == "Add":
+            new_abbreviation = request.form['new-abbreviation']
+            meaning = request.form['abbreviation-meaning']
+            abbreviation = Abbreviation(abbreviation=new_abbreviation, meaning=meaning)
+
+            try:
+                db.session.add(abbreviation)
+                db.session.commit()
+                return redirect('/')
+            except:
+                return "Error: Can not add new abbreviation! Maybe we already have your meaning in our list!!!"
+        elif request.form['subbmit_button'] == "Generate":
+            data = Abbreviation.query.all()
+            return render_template('abbreviations.html', random_abbreviation=data[randint(0, len(data)-1)].abbreviation)
+        elif request.form['subbmit_button'] == "Meaning":
+            abbr = request.form['random_abb']
+            abb = Abbreviation.query.filter_by(abbreviation=request.form['random_abb']).first()
+            return render_template('abbreviations.html', random_abbreviation=abb.abbreviation, meaning=abb.meaning)
+        elif request.form['subbmit_button'] == "Show":
+            data = Abbreviation.query.all()
+            return render_template('abbreviations-edit.html', abbreviations=data)
+    else:
+        return render_template('abbreviations-edit.html')
+
+
+
+@app.route('/abbreviations-delete/<int:id>')
+def abbreviation_delete(id):
+    abbreviation = Abbreviation.query.get_or_404(id)
+
+    try:
+        db.session.delete(abbreviation)
+        db.session.commit()
+        return redirect('/abbreviations-edit')
+    except:
+        return "Can not delete abbreviation"
